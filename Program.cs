@@ -6,7 +6,8 @@ namespace cse210_hilo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Director game = new Director();
+            game.StartGame();
         }
     }
 }
