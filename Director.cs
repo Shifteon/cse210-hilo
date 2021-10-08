@@ -13,7 +13,7 @@ namespace cse210_hilo
     {
         bool _keepPlaying = true;
         int _score = 300;
-        int card;
+        int firstCard;
         int lastCard;
         string _guess;
         Dealer _dealer = new Dealer();
@@ -28,12 +28,26 @@ namespace cse210_hilo
 
         void DoUpdates()
         {
+            if (_dealer.isFirstDeal())
+                firstCard = _dealer.DealNextCard();
             // Show card
+            Console.WriteLine($"The card is: {firstCard}");
             // Have them guess
+            higherOrLower();
             // Show next card
+            lastCard = _dealer.DealNextCard();
+            Console.WriteLine($"Next card was: {lastCard}");
             // Decide if they were right or wrong
+            AssignPoints();
             // Show score
+            Console.WriteLine($"Your score is: {_score}");
+            firstCard = lastCard;
             // Enough points? -> play again?
+            if (canPlayAgain())
+                playAgain();
+            else
+                _keepPlaying = false;
+            Console.WriteLine("");
         }
 
         bool canPlayAgain()
@@ -56,33 +70,34 @@ namespace cse210_hilo
             return;
         }
 
-        public int AssignPoints()
+        public void AssignPoints()
        {
-           int score = 0;
-
-           if (IsCorrectGuess())
+           if (!IsCorrectGuess())
            {
-               score -= 75;
+               _score -= 75;
            }
            else if (IsCorrectGuess())
            {
-               score += 100;
+               _score += 100;
            }
-
-           return score;
        }
 
        public bool IsCorrectGuess()
        {
-           if (_guess == "H" & card > lastCard)
+        //    if (_guess.ToLower() == "h")
+        //    {
+        //        if ()
+        //    }
+
+           if (_guess.ToLower() == "h" & firstCard < lastCard)
            {
                return true;
            }
-           else if (_guess == "H" & card < lastCard)
+           else if (_guess.ToLower() == "h" & firstCard > lastCard)
            {
                return false;
            }
-           else if (_guess == "L" & card < lastCard)
+           else if (_guess.ToLower() == "l" & firstCard > lastCard)
            {
                return true;
            }

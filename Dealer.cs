@@ -14,7 +14,7 @@ namespace cse210_hilo
             Random cardDraw = new Random();
             lastCard = card;
             card = cardDraw.Next(1, 14);
-            while (IsDifferentCard())
+            while (!IsDifferentCard())
             {
                 card = cardDraw.Next(1, 14);
             }
