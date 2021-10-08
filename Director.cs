@@ -57,10 +57,13 @@ namespace cse210_hilo
 
         void playAgain()
         {
-            Console.Write("Keep Playing? [y/n] ");
-            string choice = Console.ReadLine();
-            _keepPlaying = (choice == "y");
-            return;
+            if (!_dealer.isFirstDeal())
+            {
+                Console.Write("Keep Playing? [y/n] ");
+                string choice = Console.ReadLine();
+                _keepPlaying = (choice == "y");
+                return;
+            }
         }
 
         void higherOrLower()
