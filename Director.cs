@@ -1,6 +1,6 @@
 using System;
 
-namespace cse210_student_csharp_dice
+namespace cse210_hilo
 {
     /// <summary>
     /// Like a director in a play, this class is responsible for the game, the script,
@@ -12,60 +12,52 @@ namespace cse210_student_csharp_dice
     class Director
     {
         bool _keepPlaying = true;
-        int _score = 0;
-        Thrower _thrower = new Thrower();
+        int _score = 300;
+        string _guess;
+        Dealer _dealer = new Dealer();
 
         public void StartGame()
         {
             while (_keepPlaying)
             {
-                GetInputs();
-
-                if (_keepPlaying)
-                {
-                    DoUpdates();
-                    DoOutputs();
-                }
-            }
-        }
-
-        void GetInputs()
-        {
-            if (!_thrower.IsFirstThrow())
-            {
-                Console.WriteLine("Roll again? [y/n] ");
-                string choice = Console.ReadLine();
-                _keepPlaying = (choice == "y");
+                DoUpdates();
+                DoOutputs();
             }
         }
 
         void DoUpdates()
         {
-            _thrower.ThrowDice();
-
-            if (_thrower.ContainsScoringDie())
-            {
-                _score += _thrower.GetPoints();
-            }
-            else
-            {
-                _score = 0;
-            }
+            // Show card
+            // Have them guess
+            // Show next card
+            // Decide if they were right or wrong
+            // Show score
+            // Enough points? -> play again?
         }
 
         void DoOutputs()
         {
-            string diceString = _thrower.GetDiceString();
+            
+        }
 
-            Console.WriteLine();
-            Console.WriteLine($"You rolled: {diceString}");
-            Console.WriteLine($"Your score is: {_score}");
+        bool canPlayAgain()
+        {
+            return _score > 0;
+        }
 
-            if (!_thrower.CanThrow())
-            {
-                Console.WriteLine("Game Over");
-                _keepPlaying = false;
-            }
+        void playAgain()
+        {
+            Console.Write("Keep Playing? [y/n] ");
+            string choice = Console.ReadLine();
+            _keepPlaying = (choice == "y");
+            return;
+        }
+
+        void higherOrLower()
+        {
+            Console.Write("Higher or lower? [h/l] ");
+            _guess = Console.ReadLine();
+            return;
         }
 
     } // end of class: Director
