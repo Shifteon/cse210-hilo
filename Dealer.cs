@@ -4,17 +4,20 @@ namespace cse210_hilo
 {
     class Dealer
     {
-        int lastCard = 0;
-        int card;
+
+        int card = 0;
+        int lastCard;
+        int dealCounter = 0;
         public int DealNextCard()
         {
+            dealCounter++;
             Random cardDraw = new Random();
+            lastCard = card;
             card = cardDraw.Next(1, 14);
             while (IsDifferentCard())
             {
                 card = cardDraw.Next(1, 14);
             }
-            lastCard = card;
             return card;
         }
 
@@ -27,6 +30,23 @@ namespace cse210_hilo
             else
             {
                 return true;
+            }
+        }
+
+        public void DisplayCard()
+        {
+            Console.WriteLine($"The card is: {card}");
+        }
+
+        public bool isFirstDeal()
+        {
+            if (dealCounter == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
