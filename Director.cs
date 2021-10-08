@@ -12,7 +12,7 @@ namespace cse210_hilo
     class Director
     {
         bool _keepPlaying = true;
-        int _score = 0;
+        int _score = 300;
         string _guess;
         Dealer _dealer = new Dealer();
 
@@ -38,12 +38,6 @@ namespace cse210_hilo
         void DoOutputs()
         {
             
-
-            if (!_dealer.CanThrow())
-            {
-                Console.WriteLine("Game Over");
-                _keepPlaying = false;
-            }
         }
 
         bool canPlayAgain()
