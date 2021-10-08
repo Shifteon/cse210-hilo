@@ -44,7 +44,7 @@ namespace cse210_hilo
            {
                return true;
            }
-           else if(guess = "L" & card > lastCard)
+           else
            {
                return false;
            }
