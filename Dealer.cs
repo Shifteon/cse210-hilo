@@ -4,7 +4,7 @@ namespace cse210_hilo
 {
     class Dealer
     {
-        int lastCard = 0;
+
         int card;
         public int DealNextCard()
         {
@@ -14,7 +14,6 @@ namespace cse210_hilo
             {
                 card = cardDraw.Next(1, 14);
             }
-            lastCard = card;
             return card;
         }
 
@@ -30,17 +29,22 @@ namespace cse210_hilo
             }
         }
 
+        public void DisplayCard()
+        {
+            Console.WriteLine($"The card is: {card}");
+        }
+
        public bool IsCorrectGuess(string guess)
        {
            if (guess == "H" & card > lastCard)
            {
                return true;
            }
-           else if (guess = "H" & card < lastCard)
+           else if (guess == "H" & card < lastCard)
            {
                return false;
            }
-           else if (guess = "L" & card < lastCard)
+           else if (guess == "L" & card < lastCard)
            {
                return true;
            }
