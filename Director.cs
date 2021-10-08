@@ -5,9 +5,6 @@ namespace cse210_hilo
     /// <summary>
     /// Like a director in a play, this class is responsible for the game, the script,
     /// the actors, and all of their interactions.
-    /// 
-    /// For this program, it has responsibility for the score, coordinating with the
-    /// player to roll, and the sequence of play.
     /// </summary>
     class Director
     {
@@ -18,6 +15,11 @@ namespace cse210_hilo
         string _guess;
         Dealer _dealer = new Dealer();
 
+        /// <summary>
+        /// Game loop
+        ///
+        /// Condition: Exits when _keepPlayin == false
+        /// </summary>
         public void StartGame()
         {
             while (_keepPlaying)
@@ -26,8 +28,13 @@ namespace cse210_hilo
             }
         }
 
+         /// <summary>
+        /// Calls everything in order to run the game
+        /// and sets the needed card variables
+        /// </summary>
         void DoUpdates()
         {
+            // Set card if it is the first turn
             if (_dealer.isFirstDeal())
                 firstCard = _dealer.DealNextCard();
             // Show card
@@ -50,11 +57,21 @@ namespace cse210_hilo
             Console.WriteLine("");
         }
 
+         /// <summary>
+        /// Determines if the player can play again
+        /// 
+        /// The condition is: if the score > 0
+        /// </summary>
+        /// <return>A bool telling us if they can play again</return>
         bool canPlayAgain()
         {
             return _score > 0;
         }
 
+         /// <summary>
+        /// Asks the player if they want to play again.
+        /// Sets _keepPlaying according to their answer.
+        /// </summary>
         void playAgain()
         {
             if (!_dealer.isFirstDeal())
@@ -66,6 +83,10 @@ namespace cse210_hilo
             }
         }
 
+         /// <summary>
+        /// Asks the user to guess if the next card is higher
+        /// or lower. Sets guess to their answer.
+        /// </summary>
         void higherOrLower()
         {
             Console.Write("Higher or lower? [h/l] ");
@@ -73,6 +94,14 @@ namespace cse210_hilo
             return;
         }
 
+        
+        /// <summary>
+        /// Adds or removes points from the score
+        /// 
+        /// The rules are:
+        ///     Correct guess: +100 Points
+        ///     Incorrect: -75 Points
+        /// </summary>
         public void AssignPoints()
        {
            if (!IsCorrectGuess())
@@ -85,6 +114,13 @@ namespace cse210_hilo
            }
        }
 
+       /// <summary>
+        /// Determines if the guess was correct
+        /// 
+        /// If the guess was higher and the next card was higher, returns true
+        /// If the guess was lower and the next card was lower, returns true
+        /// Else, returns false
+        /// </summary>
        public bool IsCorrectGuess()
        {
         //    if (_guess.ToLower() == "h")
