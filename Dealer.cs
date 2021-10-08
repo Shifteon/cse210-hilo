@@ -6,8 +6,10 @@ namespace cse210_hilo
     {
         int lastCard = 0;
         int card;
+        int dealCounter = 0;
         public int DealNextCard()
         {
+            dealCounter++;
             Random cardDraw = new Random();
             card = cardDraw.Next(1, 14);
             while (IsDifferentCard())
@@ -30,25 +32,37 @@ namespace cse210_hilo
             }
         }
 
-       public bool IsCorrectGuess(string guess)
-       {
-           if (guess == "H" & card > lastCard)
-           {
-               return true;
-           }
-           else if (guess = "H" & card < lastCard)
-           {
-               return false;
-           }
-           else if (guess = "L" & card < lastCard)
-           {
-               return true;
-           }
-           else
-           {
-               return false;
-           }
+        public bool IsCorrectGuess(string guess)
+        {
+            if (guess == "H" & card > lastCard)
+            {
+                return true;
+            }
+            else if (guess = "H" & card < lastCard)
+            {
+                return false;
+            }
+            else if (guess = "L" & card < lastCard)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
-       }
+        }
+
+        public bool isFirstDeal()
+        {
+            if (dealCounter == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
