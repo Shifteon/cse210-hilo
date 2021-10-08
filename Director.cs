@@ -43,10 +43,13 @@ namespace cse210_hilo
 
         void playAgain()
         {
-            Console.Write("Keep Playing? [y/n] ");
-            string choice = Console.ReadLine();
-            _keepPlaying = (choice == "y");
-            return;
+            if (!_dealer.isFirstDeal())
+            {
+                Console.Write("Keep Playing? [y/n] ");
+                string choice = Console.ReadLine();
+                _keepPlaying = (choice == "y");
+                return;
+            }
         }
 
         void higherOrLower()
@@ -57,40 +60,40 @@ namespace cse210_hilo
         }
 
         public int AssignPoints()
-       {
-           int score = 0;
+        {
+            int score = 0;
 
-           if (IsCorrectGuess())
-           {
-               score -= 75;
-           }
-           else if (IsCorrectGuess())
-           {
-               score += 100;
-           }
+            if (IsCorrectGuess())
+            {
+                score -= 75;
+            }
+            else if (IsCorrectGuess())
+            {
+                score += 100;
+            }
 
-           return score;
-       }
+            return score;
+        }
 
-       public bool IsCorrectGuess()
-       {
-           if (_guess == "H" & card > lastCard)
-           {
-               return true;
-           }
-           else if (_guess == "H" & card < lastCard)
-           {
-               return false;
-           }
-           else if (_guess == "L" & card < lastCard)
-           {
-               return true;
-           }
-           else
-           {
-               return false;
-           }
-       }
+        public bool IsCorrectGuess()
+        {
+            if (_guess == "H" & card > lastCard)
+            {
+                return true;
+            }
+            else if (_guess == "H" & card < lastCard)
+            {
+                return false;
+            }
+            else if (_guess == "L" & card < lastCard)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     } // end of class: Director
 }
