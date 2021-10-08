@@ -29,26 +29,5 @@ namespace cse210_hilo
                 return true;
             }
         }
-
-       public bool IsCorrectGuess(string guess)
-       {
-           if (guess == "H" & card > lastCard)
-           {
-               return true;
-           }
-           else if (guess = "H" & card < lastCard)
-           {
-               return false;
-           }
-           else if (guess = "L" & card < lastCard)
-           {
-               return true;
-           }
-           else
-           {
-               return false;
-           }
-
-       }
     }
 }

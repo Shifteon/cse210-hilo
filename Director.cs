@@ -13,6 +13,8 @@ namespace cse210_hilo
     {
         bool _keepPlaying = true;
         int _score = 300;
+        int card;
+        int lastCard;
         string _guess;
         Dealer _dealer = new Dealer();
 
@@ -64,16 +66,36 @@ namespace cse210_hilo
        {
            int score = 0;
 
-           if (!_dealer.IsCorrectGuess(_guess))
+           if (IsCorrectGuess())
            {
                score -= 75;
            }
-           else if (_dealer.IsCorrectGuess(_guess))
+           else if (IsCorrectGuess())
            {
                score += 100;
            }
 
            return score;
+       }
+
+       public bool IsCorrectGuess()
+       {
+           if (_guess == "H" & card > lastCard)
+           {
+               return true;
+           }
+           else if (_guess == "H" & card < lastCard)
+           {
+               return false;
+           }
+           else if (_guess == "L" & card < lastCard)
+           {
+               return true;
+           }
+           else
+           {
+               return false;
+           }
        }
 
     } // end of class: Director
