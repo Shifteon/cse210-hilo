@@ -4,27 +4,23 @@ namespace cse210_hilo
 {
     class Dealer
     {
-        int previousCard = 0;
-        public int DealNextCard()
+        int lastCard = 0;
+        public void DealNextCard()
         {
             Random cardDraw = new Random();
-            int card;
             bool cardNotSame = false;
-            while (cardNotSame);
+            while (cardNotSame)
             {
                 card = cardDraw.Next(1, 14);
                 
-                cardNotSame = IsDifferentCard(card, previousCard);
-
-                
+                cardNotSame = IsDifferentCard(card);
             }
-            previousCard = card;
-            return card;
+            lastCard = card;
         }
 
-        public bool IsDifferentCard(int card, int previoiusCard)
+        public bool IsDifferentCard(int card)
         {
-            if (card == previoiusCard)
+            if (card == lastCard)
             {
                 return false;
             }
