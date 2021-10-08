@@ -4,7 +4,6 @@ namespace cse210_hilo
 {
     class Dealer
     {
-<<<<<<< HEAD
         int previousCard = 0;
         public int DealNextCard()
         {
@@ -34,7 +33,6 @@ namespace cse210_hilo
                 return true;
             }
         }
-=======
        public bool IsCorrectGuess(guess, currentCard)
        {
            if (guess == H & currentCard > lastCard)
@@ -70,6 +68,5 @@ namespace cse210_hilo
 
            return score;
        }
->>>>>>> 7e47e4c1c93748385757f77428aa7c522db49dfe
     }
 }
