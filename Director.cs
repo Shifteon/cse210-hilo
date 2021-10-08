@@ -23,7 +23,6 @@ namespace cse210_hilo
             while (_keepPlaying)
             {
                 DoUpdates();
-                DoOutputs();
             }
         }
 
@@ -35,11 +34,6 @@ namespace cse210_hilo
             // Decide if they were right or wrong
             // Show score
             // Enough points? -> play again?
-        }
-
-        void DoOutputs()
-        {
-            
         }
 
         bool canPlayAgain()
