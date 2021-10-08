@@ -60,5 +60,21 @@ namespace cse210_hilo
             return;
         }
 
+        public int AssignPoints()
+       {
+           int score = 0;
+
+           if (!_dealer.IsCorrectGuess(_guess))
+           {
+               score -= 75;
+           }
+           else if (_dealer.IsCorrectGuess(_guess))
+           {
+               score += 100;
+           }
+
+           return score;
+       }
+
     } // end of class: Director
 }

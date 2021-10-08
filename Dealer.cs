@@ -10,7 +10,7 @@ namespace cse210_hilo
         {
             Random cardDraw = new Random();
             card = cardDraw.Next(1, 14);
-            while (IsDifferentCard(card, lastCard))
+            while (IsDifferentCard())
             {
                 card = cardDraw.Next(1, 14);
             }
@@ -18,9 +18,9 @@ namespace cse210_hilo
             return card;
         }
 
-        public bool IsDifferentCard(int card, int previoiusCard)
+        public bool IsDifferentCard()
         {
-            if (card == previoiusCard)
+            if (card == lastCard)
             {
                 return false;
             }
@@ -29,41 +29,26 @@ namespace cse210_hilo
                 return true;
             }
         }
-        
+
        public bool IsCorrectGuess(string guess)
        {
-           if (guess == H & card > lastCard)
+           if (guess == "H" & card > lastCard)
            {
                return true;
            }
-           else if(guess = H & card < lastCard)
+           else if (guess = "H" & card < lastCard)
            {
                return false;
            }
-           else if (guess = L & card < lastCard)
+           else if (guess = "L" & card < lastCard)
            {
                return true;
            }
-           else if(guess = L & card > lastCard)
+           else if(guess = "L" & card > lastCard)
            {
                return false;
            }
-       }
 
-       public int AssignPoints()
-       {
-           int score = 0;
-
-           if (!IsCorrectGuess())
-           {
-               score -= 75;
-           }
-           else if (IsCorrectGuess())
-           {
-               score += 100;
-           }
-
-           return score;
        }
     }
 }
