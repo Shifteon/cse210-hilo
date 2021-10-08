@@ -5,20 +5,20 @@ namespace cse210_hilo
     class Dealer
     {
         int lastCard = 0;
-        public void DealNextCard()
+        int card;
+        public int DealNextCard()
         {
             Random cardDraw = new Random();
-            bool cardNotSame = false;
-            while (cardNotSame)
+            card = cardDraw.Next(1, 14);
+            while (IsDifferentCard())
             {
                 card = cardDraw.Next(1, 14);
-                
-                cardNotSame = IsDifferentCard(card);
             }
             lastCard = card;
+            return card;
         }
 
-        public bool IsDifferentCard(int card)
+        public bool IsDifferentCard()
         {
             if (card == lastCard)
             {
@@ -29,23 +29,24 @@ namespace cse210_hilo
                 return true;
             }
         }
-       public bool IsCorrectGuess(guess, currentCard)
+        
+       public bool IsCorrectGuess(string guess)
        {
-           if (guess == H & currentCard > lastCard)
+           if (guess == H & card > lastCard)
            {
-               IsCorrectGuess = true;
+               return true;
            }
-           else if(guess = H & currentCard < lastCard)
+           else if(guess = H & card < lastCard)
            {
-               IsCorrectGuess = false;
+               return false;
            }
-           else if (guess = L & currentCard < lastCard)
+           else if (guess = L & card < lastCard)
            {
-               IsCorrectGuess = true;
+               return true;
            }
-           else if(guess = L & currentCard > lastCard)
+           else
            {
-               IsCorrectGuess = false;
+               return false;
            }
        }
 
@@ -53,11 +54,11 @@ namespace cse210_hilo
        {
            int score = 0;
 
-           if (!IsCorrectGuess(currentCard))
+           if (!IsCorrectGuess())
            {
                score -= 75;
            }
-           else if (IsCorrectGuess(currentCard))
+           else if (IsCorrectGuess())
            {
                score += 100;
            }
